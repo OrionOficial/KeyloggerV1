@@ -90,7 +90,6 @@
             this.Text = "KEY";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmHome_FormClosing);
             this.Load += new System.EventHandler(this.FrmHome_Load);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FrmHome_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);

