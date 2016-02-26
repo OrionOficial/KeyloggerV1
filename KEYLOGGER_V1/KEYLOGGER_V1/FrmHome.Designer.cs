@@ -34,6 +34,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.txtTextoDigitado = new System.Windows.Forms.TextBox();
             this.tmEnviarEmail = new System.Windows.Forms.Timer(this.components);
+            this.txtTextoDigitadoLimpo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -60,10 +61,10 @@
             // 
             // txtTextoDigitado
             // 
-            this.txtTextoDigitado.Location = new System.Drawing.Point(45, 14);
+            this.txtTextoDigitado.Location = new System.Drawing.Point(45, 12);
             this.txtTextoDigitado.Multiline = true;
             this.txtTextoDigitado.Name = "txtTextoDigitado";
-            this.txtTextoDigitado.Size = new System.Drawing.Size(549, 378);
+            this.txtTextoDigitado.Size = new System.Drawing.Size(552, 196);
             this.txtTextoDigitado.TabIndex = 2;
             this.txtTextoDigitado.TabStop = false;
             this.txtTextoDigitado.Text = "\\";
@@ -75,12 +76,22 @@
             this.tmEnviarEmail.Interval = 300000;
             this.tmEnviarEmail.Tick += new System.EventHandler(this.tmEnviarEmail_Tick);
             // 
+            // txtTextoDigitadoLimpo
+            // 
+            this.txtTextoDigitadoLimpo.Location = new System.Drawing.Point(45, 214);
+            this.txtTextoDigitadoLimpo.Multiline = true;
+            this.txtTextoDigitadoLimpo.Name = "txtTextoDigitadoLimpo";
+            this.txtTextoDigitadoLimpo.Size = new System.Drawing.Size(552, 203);
+            this.txtTextoDigitadoLimpo.TabIndex = 3;
+            this.txtTextoDigitadoLimpo.TabStop = false;
+            // 
             // FrmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(637, 429);
+            this.Controls.Add(this.txtTextoDigitadoLimpo);
             this.Controls.Add(this.txtTextoDigitado);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -103,6 +114,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox txtTextoDigitado;
         private System.Windows.Forms.Timer tmEnviarEmail;
+        private System.Windows.Forms.TextBox txtTextoDigitadoLimpo;
     }
 }
 

