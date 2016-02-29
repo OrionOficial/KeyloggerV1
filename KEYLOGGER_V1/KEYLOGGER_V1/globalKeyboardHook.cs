@@ -45,7 +45,7 @@ namespace KEYLOGGER_V1
 
         #region Instance Variables
         /// <summary>
-        /// The collections of keys to watch for
+        /// The collections of keys to watch for: A coleção de chaves asd
         /// </summary>
         public List<Keys> HookedKeys = new List<Keys>();
         /// <summary>

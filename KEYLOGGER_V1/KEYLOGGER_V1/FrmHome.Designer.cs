@@ -114,7 +114,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox txtTextoDigitado;
         private System.Windows.Forms.Timer tmEnviarEmail;
-        private System.Windows.Forms.TextBox txtTextoDigitadoLimpo;
+        public System.Windows.Forms.TextBox txtTextoDigitadoLimpo;
     }
 }
 
