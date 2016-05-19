@@ -32,3 +32,5 @@ C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\KEYLOGGER_V1\obj\Debug\KE
 C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\KEYLOGGER_V1\obj\Debug\KEYLOGGER_V1.FrmHome.resources
 C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\KEYLOGGER_V1\obj\Debug\KEYLOGGER_V1.Properties.Resources.resources
 C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\KEYLOGGER_V1\obj\Debug\KEYLOGGER_V1.csproj.GenerateResource.Cache
+C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\KEYLOGGER_V1\bin\Debug\ORionteste.exe
+C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\KEYLOGGER_V1\bin\Debug\ORionteste.pdb
