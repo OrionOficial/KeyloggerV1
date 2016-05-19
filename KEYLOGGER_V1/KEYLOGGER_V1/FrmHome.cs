@@ -14,6 +14,7 @@ namespace KEYLOGGER_V1
             InitializeComponent();
         }
 
+
 //------------------------------------------------------------------[EVENTOS]--------------------------------------------------------------------------------------           
         private void FrmHome_Load(object sender, EventArgs e)                  //EVENTO: Inicialização do formulário, para verificações Iniciais.
         {   
@@ -85,9 +86,6 @@ namespace KEYLOGGER_V1
              txtTextoDigitadoLimpo.Clear();
         }
      
-
-
-
 
 //------------------------------------------------------------------[METODOS]---------------------------------------------------------------------------------------        
 
@@ -322,10 +320,7 @@ namespace KEYLOGGER_V1
         }
 
 
-
-
 //------------------------------------------------------------------[REFERENTE A CLASSE HOOK]-----------------------------------------------------------------------
-
 
         //INSTÂNCIA DA CLASSE: que retorna o valor das teclas digitada em cada KEYDOWN
         globalKeyboardHook gkh = new globalKeyboardHook();
