@@ -80,7 +80,7 @@ namespace KEYLOGGER_V1
         /// </summary>
         public event KeyEventHandler KeyUp;
         #endregion
-//-----------------------------------------------------[Eventos de PRESSIONAR E SOLTAR teclas]------------------------->
+
         #region Constructors and Destructors
        
         /// <summary>

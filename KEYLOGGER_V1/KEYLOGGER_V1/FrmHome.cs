@@ -9,7 +9,7 @@ namespace KEYLOGGER_V1
 {
     public partial class FrmHome : Form
     { 
-        public FrmHome()//METODO CONSTRUTOR.
+        public FrmHome()
         {
             InitializeComponent();
         }
