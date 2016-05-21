@@ -1,10 +1,5 @@
 ﻿using KEYLOGGER_V1.Log;
 using KEYLOGGER_V1.Email;
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Net.Mail;
-using System.Runtime.InteropServices;
 
 
 
