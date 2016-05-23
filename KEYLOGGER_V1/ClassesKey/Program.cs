@@ -10,10 +10,9 @@ namespace ClassesKey
     {
         static void Main(string[] args)
         {
-            // Teste de teclas
-            var Tecla = new Teclado.TeclaLWin();
-
-            Console.WriteLine(Tecla.GetTecla());
+            Console.Write("Teste");
+            Console.Write(new Teclado.TeclaReturn().GetTecla());
+            Console.Write("Teste");
             Console.ReadKey();
         }
     }
