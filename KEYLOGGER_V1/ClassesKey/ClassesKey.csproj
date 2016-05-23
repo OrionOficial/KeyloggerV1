@@ -47,7 +47,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Teclado\RepositorioTeclas.cs" />
     <Compile Include="Teclado\Tecla.cs" />
-    <Compile Include="Teclado\TeclaLWin.cs" />
     <Compile Include="Teclado\Teclas.cs" />
   </ItemGroup>
   <ItemGroup>
