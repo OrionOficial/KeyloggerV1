@@ -10,9 +10,10 @@ namespace ClassesKey
     {
         static void Main(string[] args)
         {
-            Console.Write("Teste");
-            Console.Write(new Teclado.TeclaReturn().GetTecla());
-            Console.Write("Teste");
+            var VetorTeclas = new Teclado.RepositorioTeclas().GetTeclas();
+
+            VetorTeclas.ToList().ForEach(t => Console.WriteLine(t));
+
             Console.ReadKey();
         }
     }

@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ClassesKey.Teclado
 {
-    public class RepositorioTeclas
+    public class RepositorioTeclas : Teclas
     {
-        public IEnumerable<Tecla> FiltroDeTeclas { get; private set; }
-
+       
         public RepositorioTeclas()
         {
 
