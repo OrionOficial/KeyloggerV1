@@ -9,7 +9,7 @@ namespace KEYLOGGER_V1
     { 
         #region Construtores
         /// <summary>
-        ///  Construtor padrão do formulario keylogger
+        ///  Construtor padrão do formulario
         /// </summary>
         public FrmHome()
         {
