@@ -104,7 +104,12 @@ namespace ClassesKey.Teclado
         //Retorna    = [Win]
         public string GetTeclaPorCodigo(string codigo)
         {
-            return ""; 
+            return EncontrarPorCodigo(codigo).nome; 
+        }
+
+        private Tecla EncontrarPorCodigo(string codigo)
+        {
+            return FiltroDeTeclas.First(c => c.codigo == codigo);
         }
 
     }
