@@ -10,8 +10,9 @@ namespace ClassesKey
     {
         static void Main(string[] args)
         {
-            var Texto = new Teclado.RepositorioTeclas().GetTeclaPorCodigo(Console.ReadLine());
-            Console.WriteLine(Texto);
+            var tecla = "LWin";
+
+            Console.WriteLine($"{tecla} = {new Teclado.RepositorioTeclas().GetTeclaPorCodigo(tecla)}");
 
             Console.ReadKey();
         }
