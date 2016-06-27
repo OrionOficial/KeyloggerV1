@@ -52,6 +52,7 @@
       <DependentUpon>FrmHome.cs</DependentUpon>
     </Compile>
     <Compile Include="globalKeyboardHook.cs" />
+    <Compile Include="Gravacao.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmHome.resx">
