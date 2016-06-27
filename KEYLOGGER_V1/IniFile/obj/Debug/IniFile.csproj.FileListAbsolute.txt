@@ -1,0 +1,9 @@
+C:\Users\Orion\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\IniFile\bin\Debug\IniFile.dll
+C:\Users\Orion\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\IniFile\bin\Debug\IniFile.pdb
+C:\Users\Orion\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\IniFile\obj\Debug\IniFile.dll
+C:\Users\Orion\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\IniFile\obj\Debug\IniFile.pdb
+C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\IniFile\bin\Debug\IniFile.dll
+C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\IniFile\bin\Debug\IniFile.pdb
+C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\IniFile\obj\Debug\IniFile.csprojResolveAssemblyReference.cache
+C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\IniFile\obj\Debug\IniFile.dll
+C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\IniFile\obj\Debug\IniFile.pdb

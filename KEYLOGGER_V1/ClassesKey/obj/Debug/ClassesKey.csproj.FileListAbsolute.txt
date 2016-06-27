@@ -1,0 +1,6 @@
+C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\ClassesKey\bin\Debug\ClassesKey.exe.config
+C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\ClassesKey\bin\Debug\ClassesKey.exe
+C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\ClassesKey\bin\Debug\ClassesKey.pdb
+C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\ClassesKey\obj\Debug\ClassesKey.csprojResolveAssemblyReference.cache
+C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\ClassesKey\obj\Debug\ClassesKey.exe
+C:\Users\Rox\Documents\GitHub\KeyloggerV1\KEYLOGGER_V1\ClassesKey\obj\Debug\ClassesKey.pdb
