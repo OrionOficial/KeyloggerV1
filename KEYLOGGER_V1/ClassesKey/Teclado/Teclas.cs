@@ -4,13 +4,13 @@
  *      Objetivo:
  *  Retornar o valor da tecla ou valor + comportamento especifico.
  *  Cada classe representa uma tecla com seu determinado comportamento.
+ *
  *  O método GetTecla é virtual,
  *  e pode ser sobrescrevido dependendo do comportamento da tecla.
  *   
  */
 
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,7 +20,10 @@ namespace ClassesKey.Teclado
     //repositorio de teclas
     public class Teclas
     {
+        // Propriedades
         public IEnumerable<Tecla> FiltroDeTeclas { get; private set; }
+
+        #region Métodos ,GetTeclas, GetTeclaPorCodigo
         // representa a interação entre as teclas (Repositorio de teclas) 
         public Teclas()
         {
@@ -111,9 +114,10 @@ namespace ClassesKey.Teclado
         {
             return FiltroDeTeclas.First(c => c.codigo == codigo);
         }
-
+        #endregion
     }
 
+    #region Teclas com funções especificas (ex: espaço,shift,ctrl...) 
     public class TeclaLWin : Tecla
     {
         public override string codigo { get { return "LWin"; } }
@@ -416,6 +420,9 @@ namespace ClassesKey.Teclado
             return nome;
         }
     }
+    #endregion
+
+    #region Teclas Caracteres especiais
     // igual =
     public class TeclaOemplus : Tecla
     {
@@ -526,7 +533,9 @@ namespace ClassesKey.Teclado
             return nome;
         }
     }
+    #endregion
 
+    #region Teclas numericas
     public class TeclaD1 : Tecla
     {
         public override string codigo { get { return "D1"; } }
@@ -637,6 +646,9 @@ namespace ClassesKey.Teclado
         }
     }
 
+    #endregion
+
+    #region Teclas do F1 ao F12
     public class TeclaF1 : Tecla
     {
         public override string codigo { get { return "F1"; } }
@@ -768,4 +780,5 @@ namespace ClassesKey.Teclado
             return nome;
         }
     }
+    #endregion
 }
