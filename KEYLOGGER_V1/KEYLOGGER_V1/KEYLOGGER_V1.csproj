@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="c_Enviar_Email.cs" />
+    <Compile Include="Conexao.cs" />
+    <Compile Include="Email.cs" />
+    <Compile Include="EmailServico.cs" />
     <Compile Include="FrmHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,6 +55,9 @@
     </Compile>
     <Compile Include="globalKeyboardHook.cs" />
     <Compile Include="Gravacao.cs" />
+    <Compile Include="IConexao.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="LogServico.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmHome.resx">
